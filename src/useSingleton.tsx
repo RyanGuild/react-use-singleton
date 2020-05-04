@@ -47,6 +47,12 @@ export function SingletonProvider(
     dirtyRefBreaker,
   ]);
 
+  console.log(props.singleton.constructor.name);
+  console.log(SingletonStore);
+  console.log(props.singleton);
+  console.log(sglIter);
+  console.log(dirtyRefBreaker);
+
   if (props.singleton.constructor.name in SingletonStore.keys()) {
     let Ctx = SingletonStore.get(props.singleton.constructor.name);
     return (
