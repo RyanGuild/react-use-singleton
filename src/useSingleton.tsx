@@ -20,38 +20,31 @@ export function SingletonProvider(
 
   const dirtyRefBreaker: (s: Singleton) => Iterator<Singleton> = useCallback(
     function* (singleton: any) {
-      let last;
-      while (true) {
-        if (singleton.dirty) {
-          last = new Proxy(singleton, {
-            get(target, key) {
-              if (key === "invalidate") {
-                return () => next(update + 1);
-              } else {
-                return Reflect.get(target, key);
-              }
-            },
-            set(self, key, value) {
-              if (
-                !self.hasOwnProperty("untrackedProperies") ||
-                !(key in self.untrackedProperies)
-              )
-                next(update + 1);
-              return Reflect.set(self, key, value);
-            },
-          });
-          singleton.dirty = false;
-          yield last;
-        } else {
-          yield last;
-        }
-      }
+      let last = new Proxy(singleton, {
+        get(target, key) {
+          if (key === "invalidate") {
+            return () => next(update + 1);
+          } else {
+            return Reflect.get(target, key);
+          }
+        },
+        set(self, key, value) {
+          if (
+            !self.hasOwnProperty("untrackedProperies") ||
+            !(key in self.untrackedProperies)
+          )
+            next(update + 1);
+          return Reflect.set(self, key, value);
+        },
+      });
+      while (true) yield last;
     },
     [next, update]
   );
 
   const sglIter = useMemo(() => dirtyRefBreaker(props.singleton), [
     props.singleton,
+    dirtyRefBreaker,
   ]);
 
   if (props.singleton.constructor.name in SingletonStore.keys()) {
