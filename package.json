@@ -1,16 +1,15 @@
 {
-    "name": "typescript-react-library",
-    "version": "1.0.0",
-    "description": "Boilerplate for TypeScript React component library",
+    "name": "react-use-singleton",
+    "version": "0.0.1",
+    "description": "a provider and hook to create singleton services for React",
     "repository": {
         "type": "git",
-        "url": "https://github.com/bdoss/typescript-react-library.git"
+        "url": "git+https://github.com/RyanGuild/react-use-singleton.git"
     },
-    "private": true,
-    "author": "bdoss",
+    "author": "RyanGuild",
     "license": "MIT",
     "scripts": {
-        "build": "npm run clean:build && tsc -p ./tsconfig.build.json && cp ./package.json ./dist/lib",
+        "build": "npm run clean:build && tsc -p ./tsconfig.build.json && cp ./package.json ./dist/lib && cp ./README.md ./dist/lib",
         "clean:build": "rimraf ./dist/lib",
         "dist": "cd ./dist/lib && npm publish",
         "lint": "tslint ./src ./test",
@@ -47,5 +46,22 @@
     "peerDependencies": {
         "react": "^16.0.0",
         "react-dom": "^16.0.0"
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/RyanGuild/react-use-singleton/issues"
+    },
+    "homepage": "https://github.com/RyanGuild/react-use-singleton#readme",
+    "main": "dist/lib/useSingleton.js",
+    "types": "dist/lib/useSingleton.d.ts",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {},
+    "keywords": [
+        "react",
+        "hooks",
+        "service",
+        "singleton",
+        "proxy"
+    ]
 }
