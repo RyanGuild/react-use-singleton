@@ -20,7 +20,7 @@ export function SingletonProvider(
 
   const dirtyRefBreaker: (s: Singleton) => Iterator<Singleton> = useCallback(
     function* (singleton: any) {
-      let last = new Proxy(singleton, {
+      singleton = new Proxy(singleton, {
         get(target, key) {
           if (key === "invalidate") {
             return () => next(update + 1);
@@ -37,7 +37,7 @@ export function SingletonProvider(
           return Reflect.set(self, key, value);
         },
       });
-      while (true) yield last;
+      while (true) yield singleton;
     },
     [next, update]
   );
