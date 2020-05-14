@@ -16,7 +16,7 @@
         "url": "https://github.com/RyanGuild/react-use-singleton/issues"
     },
     "homepage": "https://github.com/RyanGuild/react-use-singleton#readme",
-    "main": "./useSingleton.js",
+    "module": "./useSingleton.js",
     "types": "./useSingleton.d.ts",
     "directories": {
         "test": "test"
