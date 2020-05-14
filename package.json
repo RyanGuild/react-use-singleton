@@ -1,6 +1,6 @@
 {
     "name": "react-use-singleton",
-    "version": "0.0.5",
+    "version": "1.0.0",
     "description": "a provider and hook to create singleton services for React",
     "repository": {
         "type": "git",
