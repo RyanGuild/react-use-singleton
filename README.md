@@ -8,12 +8,16 @@ Peer Dependencies:
 - react-dom
 
 ```jsx
+// must be a named class
 class Example {
   x = 1;
   constructor(arg) {
     this.x = arg || 1;
   }
 }
+
+//this is wrong
+const AnonClass = class {};
 
 const App = () => (
   <SingletonProvider singleton={/*create a new instance*/ new Example()}>
