@@ -1,12 +1,9 @@
 import * as React from "react";
-export type Constructor<T, A extends any[]> = {
-  name: string;
-  new (...args: A): T;
-};
-export type Singleton<I extends any> = {
+export type Constructor<T, A extends any[]> = new (...args: A) => T;
+export abstract class Singleton {
   untrackedProperies?: string[];
-  [K in I]: I[K];
-};
+  invalidate(): void;
+}
 export declare function SingletonProvider(
   props: React.PropsWithChildren<{
     singleton: Singleton;
